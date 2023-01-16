@@ -1,15 +1,28 @@
 import React from 'react';
-import { Header } from './styles';
+import { Header, Menu, Wrapper } from './styles';
+import { Container } from '../../global';
 
 import SteamIcon from './../../assets/steam.svg';
+import SearchBar from '../../components/SearchBar';
+import SortBar from '../../components/SortBar';
+import GamesList from '../../components/GamesList';
 
 const HomePage = () => {
 	return (
-		<>
+		<Container>
 			<Header>
-				<img src={SteamIcon} alt='steam logo' />
+				<Wrapper>
+					<img src={SteamIcon} alt='steam logo' />
+					<Menu>
+						<a href='/'>Search</a>
+						<a href='/'>Like list</a>
+					</Menu>
+				</Wrapper>
+				<SearchBar />
+				<SortBar />
 			</Header>
-		</>
+			<GamesList />
+		</Container>
 	);
 };
 
