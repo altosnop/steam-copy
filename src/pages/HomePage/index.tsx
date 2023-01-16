@@ -6,6 +6,7 @@ import SteamIcon from './../../assets/steam.svg';
 import SearchBar from '../../components/SearchBar';
 import SortBar from '../../components/SortBar';
 import GamesList from '../../components/GamesList';
+import Pagination from '../../components/Pagination';
 
 const HomePage = () => {
 	return (
@@ -22,6 +23,7 @@ const HomePage = () => {
 				<SortBar />
 			</Header>
 			<GamesList />
+			<Pagination />
 		</Container>
 	);
 };

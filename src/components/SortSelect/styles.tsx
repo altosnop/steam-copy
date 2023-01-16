@@ -38,6 +38,7 @@ export const SelectItems = styled.div`
 	background: gray;
 	border: none;
 	border-radius: 10px;
+	z-index: 1;
 `;
 
 export const Item = styled.button`

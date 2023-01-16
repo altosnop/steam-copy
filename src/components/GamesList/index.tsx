@@ -1,11 +1,13 @@
 import React from 'react';
+import { Wrapper } from './styles';
 import GameCard from '../GameCard';
 
 const GamesList = () => {
 	return (
-		<div>
+		<Wrapper>
 			<GameCard />
-		</div>
+			<GameCard />
+		</Wrapper>
 	);
 };
 

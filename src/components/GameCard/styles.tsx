@@ -7,6 +7,10 @@ export const GameCardStyled = styled.div`
 	border-radius: 10px;
 	color: white;
 
+	&:not(:last-child) {
+		margin-bottom: 15px;
+	}
+
 	div {
 		padding: 10px;
 
@@ -35,7 +39,7 @@ export const GameCardStyled = styled.div`
 
 		button {
 			position: absolute;
-			top: 0;
+			top: 80px;
 			display: flex;
 			justify-content: center;
 			align-items: center;

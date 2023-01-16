@@ -28,6 +28,7 @@ export const Items = styled.div`
 	background: gray;
 	border: none;
 	border-radius: 10px;
+	z-index: 1;
 `;
 export const ItemBtn = styled.button`
 	width: 100%;

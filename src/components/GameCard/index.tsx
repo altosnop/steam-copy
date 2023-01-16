@@ -18,7 +18,7 @@ const GameCard = () => {
 				<h3>Counter-Strike: Global Offensive</h3>
 				<p>21 Aug, 2012</p>
 				<span>8,19€</span>
-				{true ? (
+				{false ? (
 					<button>
 						<img src={PlayIcon} alt='Play' />
 					</button>
@@ -27,7 +27,7 @@ const GameCard = () => {
 				)}
 			</div>
 			<button>
-				<img src={true ? FilledHeartIcon : HeartIcon} alt='Heart' />
+				<img src={false ? FilledHeartIcon : HeartIcon} alt='Heart' />
 			</button>
 		</GameCardStyled>
 	);
