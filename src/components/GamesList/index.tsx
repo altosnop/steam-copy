@@ -7,6 +7,15 @@ const GamesList = () => {
 		<Wrapper>
 			<GameCard />
 			<GameCard />
+			<GameCard />
+			<GameCard />
+			<GameCard />
+
+			<GameCard />
+			<GameCard />
+			<GameCard />
+			<GameCard />
+			<GameCard />
 		</Wrapper>
 	);
 };

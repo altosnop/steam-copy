@@ -34,4 +34,8 @@ export const SearchForm = styled.form`
 		right: 10px;
 		top: 4px;
 	}
+
+	@media screen and (min-width: 768px) {
+		width: 100%;
+	}
 `;

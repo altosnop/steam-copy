@@ -9,6 +9,11 @@ export const SelectContainer = styled.div`
 	order: 0;
 	flex: 1 1;
 	align-self: auto;
+
+	@media screen and (min-width: 768px) {
+		margin-right: 0px;
+		margin-left: 13px;
+	}
 `;
 
 export const SelectBtn = styled.button`

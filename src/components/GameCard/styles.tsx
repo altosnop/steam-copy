@@ -7,10 +7,6 @@ export const GameCardStyled = styled.div`
 	border-radius: 10px;
 	color: white;
 
-	&:not(:last-child) {
-		margin-bottom: 15px;
-	}
-
 	div {
 		padding: 10px;
 

@@ -12,9 +12,14 @@ export const OrderContainer = styled.div`
 export const Button = styled.button`
 	background: #837f7f;
 	border-radius: 10px;
-	padding: 3px;
+	padding: 4px 6px;
 	border: none;
 	cursor: pointer;
+	text-align: center;
+
+	img {
+		vertical-align: middle;
+	}
 `;
 
 export const Items = styled.div`
@@ -29,7 +34,12 @@ export const Items = styled.div`
 	border: none;
 	border-radius: 10px;
 	z-index: 1;
+
+	@media screen and (min-width: 768px) {
+		left: 0;
+	}
 `;
+
 export const ItemBtn = styled.button`
 	width: 100%;
 	padding: 5px 25px;
