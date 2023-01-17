@@ -4,21 +4,34 @@ import { GameCardStyled, GameImg } from './styles';
 import PlayIcon from './../../assets/play.svg';
 import HeartIcon from './../../assets/heart.svg';
 import FilledHeartIcon from './../../assets/filled-heart.svg';
+import { Link } from 'react-router-dom';
 
-const GameCard = () => {
+export type TGameCardProps = {
+	id: string;
+	img: string;
+	title: string;
+	date: string;
+	price: string;
+};
+
+const linkStyle = {
+	textDecoration: 'none',
+	color: 'white',
+};
+
+const GameCard = ({ id, img, title, date, price }: TGameCardProps) => {
 	return (
 		<GameCardStyled>
-			<GameImg
-				src={
-					'http://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6'
-				}
-				alt='Game'
-			/>
+			<Link to={`/game/${id}`} style={linkStyle}>
+				<GameImg src={img} alt='Game' />
+			</Link>
 			<div>
-				<h3>Counter-Strike: Global Offensive</h3>
-				<p>21 Aug, 2012</p>
-				<span>8,19€</span>
-				{true ? (
+				<Link to={`/game/${id}`} style={linkStyle}>
+					<h3>{title}</h3>
+				</Link>
+				<p>{date}</p>
+				<span>{price}</span>
+				{false ? (
 					<button>
 						<img src={PlayIcon} alt='Play' />
 					</button>
@@ -27,7 +40,7 @@ const GameCard = () => {
 				)}
 			</div>
 			<button>
-				<img src={true ? FilledHeartIcon : HeartIcon} alt='Heart' />
+				<img src={false ? FilledHeartIcon : HeartIcon} alt='Heart' />
 			</button>
 		</GameCardStyled>
 	);

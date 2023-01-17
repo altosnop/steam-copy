@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { OrderContainer, Button, Items, ItemBtn } from './styles';
 import OptionsIcon from './../../assets/options.svg';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { setOrder } from '../../store/games/gamesSlice';
 
 const SordOrder = () => {
+	const dispatch = useAppDispatch();
 	const [isOpen, setIsOpen] = useState(false);
-	const [value, setValue] = useState('');
 
 	const handleSelect = () => {
 		setIsOpen(!isOpen);
@@ -13,7 +15,7 @@ const SordOrder = () => {
 	const handleSelectValue = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
-		setValue(e.currentTarget.value);
+		dispatch(setOrder(e.currentTarget.value));
 		setIsOpen(false);
 	};
 	return (

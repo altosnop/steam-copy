@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { TGame, TState } from '../../types/types';
+import { TGame, TState, TUrlParams } from '../../types/types';
 
 const initialState: TState = {
 	items: [],
@@ -8,18 +8,15 @@ const initialState: TState = {
 		query: '',
 		page: 1,
 	},
+	select: 'Price',
+	order: '',
 	loading: false,
-};
-
-export type UrlParams = {
-	query: string;
-	page: number;
 };
 
 export const getGames = createAsyncThunk(
 	'games/getGames',
-	async ({ query, page }: UrlParams) => {
-		const response = await axios.get<TGame>(
+	async ({ query, page }: TUrlParams, { rejectWithValue, dispatch }) => {
+		const response = await axios.get<TGame[]>(
 			`https://steam2.p.rapidapi.com/search/${query}/page/${page}`,
 			{
 				headers: {
@@ -30,19 +27,41 @@ export const getGames = createAsyncThunk(
 			}
 		);
 
-		return response.data;
+		dispatch(reset(''));
+		dispatch(setGames(response.data));
 	}
 );
 
 const gamesSlice = createSlice({
 	name: 'games',
 	initialState,
-	reducers: {},
+	reducers: {
+		setGames: (state, action: PayloadAction<TGame[]>) => {
+			state.items = [...state.items, ...action.payload];
+		},
+		setSelect: (state, action: PayloadAction<string>) => {
+			state.select = action.payload;
+		},
+		setOrder: (state, action: PayloadAction<string>) => {
+			state.order = action.payload;
+		},
+		reset: (state, _) => {
+			state.items = [];
+			state.select = 'Price';
+			state.order = '';
+			state.loading = false;
+		},
+	},
 	extraReducers: builder => {
-		builder.addCase(getGames.fulfilled, (state, action) => {
-			state.items.push(action.payload);
+		builder.addCase(getGames.pending, (state, _) => {
+			state.loading = true;
+		});
+		builder.addCase(getGames.fulfilled, (state, _) => {
+			state.loading = false;
 		});
 	},
 });
+
+export const { setGames, setSelect, setOrder, reset } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

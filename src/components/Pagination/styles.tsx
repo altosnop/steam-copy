@@ -4,9 +4,7 @@ import { TButtonProps } from '../../types/types';
 export const Wrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	position: fixed;
-	left: 0;
-	bottom: 20px;
+	margin: 20px 0;
 	width: 100%;
 `;
 

@@ -16,7 +16,9 @@ const Header = () => {
 	return (
 		<HeaderStyled>
 			<Wrapper>
-				<img src={SteamIcon} alt='steam logo' />
+				<Link to='/'>
+					<img src={SteamIcon} alt='steam logo' />
+				</Link>
 				<MenuWrapper>
 					<Menu>
 						<Link to='/'>Search</Link>

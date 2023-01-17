@@ -6,10 +6,15 @@ import ArrowUpIcon from './../../assets/arrow-up.svg';
 import ArrowDownIcon from './../../assets/arrow-down.svg';
 import PriceIcon from './../../assets/pricetags.svg';
 import DateIcon from './../../assets/browser.svg';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { selectSelector } from '../../store/games/gamesSelectors';
+import { setSelect } from '../../store/games/gamesSlice';
 
 const SortSelect = () => {
+	const dispatch = useAppDispatch();
+	const select = useAppSelector(selectSelector);
 	const [isOpen, setIsOpen] = useState(false);
-	const [value, setValue] = useState('Price');
 
 	const handleSelect = () => {
 		setIsOpen(!isOpen);
@@ -18,14 +23,14 @@ const SortSelect = () => {
 	const handleSelectValue = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
-		setValue(e.currentTarget.value);
+		dispatch(setSelect(e.currentTarget.value));
 		setIsOpen(false);
 	};
 
 	return (
 		<SelectContainer>
 			<SelectBtn onClick={handleSelect}>
-				{value}
+				{select}
 				<img src={isOpen ? ArrowUpIcon : ArrowDownIcon} alt='' width='18' />
 			</SelectBtn>
 			{isOpen && (
