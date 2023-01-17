@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Menu, Wrapper } from './styles';
+import { Header, Menu, Wrapper, MenuWrapper, SearchBarWrapper } from './styles';
 import { Container } from '../../global';
 
 import SteamIcon from './../../assets/steam.svg';
@@ -14,14 +14,19 @@ const HomePage = () => {
 			<Header>
 				<Wrapper>
 					<img src={SteamIcon} alt='steam logo' />
-					<Menu>
-						<a href='/'>Search</a>
-						<a href='/'>Like list</a>
-					</Menu>
+					<MenuWrapper>
+						<Menu>
+							<a href='/'>Search</a>
+							<a href='/'>Like list</a>
+						</Menu>
+						<SearchBarWrapper>
+							<SearchBar />
+							<SortBar />
+						</SearchBarWrapper>
+					</MenuWrapper>
 				</Wrapper>
-				<SearchBar />
-				<SortBar />
 			</Header>
+
 			<GamesList />
 			<Pagination />
 		</Container>

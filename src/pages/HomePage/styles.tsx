@@ -2,6 +2,20 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
 	width: 100%;
+	position: relative;
+`;
+
+export const MenuWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: flex-end;
+`;
+
+export const SearchBarWrapper = styled.div`
+	position: absolute;
+	width: 100%;
+	top: 45px;
 `;
 
 export const Wrapper = styled.div`
