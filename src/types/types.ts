@@ -5,6 +5,7 @@ export type TGame = {
 	released: string;
 	price: string;
 };
+
 export type TState = {
 	items: TGame[];
 	params: {
@@ -12,4 +13,8 @@ export type TState = {
 		page: number;
 	};
 	loading: boolean;
+};
+
+export type TButtonProps = {
+	active?: boolean;
 };

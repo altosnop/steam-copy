@@ -1,18 +1,15 @@
 import React from 'react';
-
-import { Container } from '../../global';
 import GamesList from '../../components/GamesList';
-import Pagination from '../../components/Pagination';
 import Header from '../../components/Header';
+import { Container } from '../../global';
 
-const HomePage = () => {
+const LikeListPage = () => {
 	return (
 		<Container>
 			<Header />
 			<GamesList />
-			<Pagination />
 		</Container>
 	);
 };
 
-export default HomePage;
+export default LikeListPage;

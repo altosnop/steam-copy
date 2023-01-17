@@ -43,6 +43,7 @@ export const GameCardStyled = styled.div`
 			height: 43px;
 			border-radius: 50%;
 			background-color: #837f7f;
+			filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 		}
 	}
 
