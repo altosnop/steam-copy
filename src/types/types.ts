@@ -3,8 +3,9 @@ export type TGame = {
 	title: string;
 	imgUrl: string;
 	released: string;
-	description?: string;
+	description: string;
 	price: string;
+	liked: boolean;
 };
 
 export type TState = {
