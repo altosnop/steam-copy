@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import { SelectContainer, SelectBtn, SelectItems, Item } from './styles';
-
 import ArrowUpIcon from './../../assets/arrow-up.svg';
 import ArrowDownIcon from './../../assets/arrow-down.svg';
 import PriceIcon from './../../assets/pricetags.svg';

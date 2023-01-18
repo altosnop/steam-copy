@@ -51,6 +51,10 @@ export const Menu = styled.nav`
 	background-color: #837f7f;
 	border-radius: 10px;
 
+	@media screen and (min-width: 1000px) {
+		padding: 11px 19px;
+	}
+
 	a {
 		text-decoration: none;
 		color: white;

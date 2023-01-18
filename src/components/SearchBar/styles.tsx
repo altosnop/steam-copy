@@ -15,6 +15,10 @@ export const SearchForm = styled.form`
 		font-size: 14px;
 		line-height: 1.2;
 		color: white;
+
+		@media screen and (min-width: 1000px) {
+			padding: 10px 30px;
+		}
 	}
 
 	input::placeholder {
@@ -33,6 +37,10 @@ export const SearchForm = styled.form`
 		height: 20px;
 		right: 10px;
 		top: 4px;
+
+		@media screen and (min-width: 1000px) {
+			top: 8px;
+		}
 	}
 
 	@media screen and (min-width: 768px) {

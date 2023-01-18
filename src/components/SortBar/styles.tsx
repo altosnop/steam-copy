@@ -6,7 +6,7 @@ export const SortBarStyled = styled.div`
 
 	@media screen and (min-width: 768px) {
 		width: 50%;
-		max-width: 200px;
+		max-width: 250px;
 		margin: 0 13px;
 		flex-direction: row-reverse;
 	}

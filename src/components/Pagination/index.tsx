@@ -5,17 +5,18 @@ import RightArrowIcon from './../../assets/arrow-right.svg';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { getGames, setPage } from '../../store/games/gamesSlice';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { pageSelector } from '../../store/games/gamesSelectors';
-
-export type TPaginationProps = {
-	paginate?: (page: number) => void;
-};
+import { gamesSelector, pageSelector } from '../../store/games/gamesSelectors';
+import getPage from '../../service/getPage';
 
 const Pagination = () => {
 	const dispatch = useAppDispatch();
+	const games = useAppSelector(gamesSelector);
 	const page = useAppSelector(pageSelector);
 
-	const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	// I fixed the pages quantity, because there is no way in SteamAPI to get all elements to dynamicaly calculate the number of pages.
+	const pages = [
+		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+	];
 
 	const [currentPage, setCurrentPage] = useState(page);
 
@@ -24,7 +25,6 @@ const Pagination = () => {
 		dispatch(setPage(pageNumber));
 		dispatch(getGames());
 	};
-
 	const onNextPage = () => {
 		if (currentPage <= 10) {
 			setCurrentPage(currentPage + 1);
@@ -32,7 +32,6 @@ const Pagination = () => {
 			dispatch(getGames());
 		}
 	};
-
 	const onPrevPage = () => {
 		if (currentPage !== 1) {
 			setCurrentPage(currentPage - 1);
@@ -41,41 +40,7 @@ const Pagination = () => {
 		}
 	};
 
-	const getPage = () => {
-		let pagesToShow = 3;
-		let totalPages = 10;
-
-		let pages = [],
-			startFromNumber;
-
-		if (totalPages <= pagesToShow) {
-			startFromNumber = 1;
-			pagesToShow = totalPages;
-		} else {
-			if (currentPage <= Math.ceil(pagesToShow / 2)) {
-				startFromNumber = 1;
-			} else if (
-				currentPage + Math.floor((pagesToShow - 1) / 2) >=
-				totalPages
-			) {
-				startFromNumber = totalPages - (pagesToShow - 1);
-			} else {
-				startFromNumber = currentPage - Math.floor(pagesToShow / 2);
-			}
-		}
-
-		for (let i = 1; i <= pagesToShow; i++) {
-			pages.push(startFromNumber++);
-		}
-
-		return {
-			currentPage,
-			totalPages,
-			pages,
-		};
-	};
-
-	const pager = getPage();
+	const pager = getPage(currentPage);
 
 	return (
 		<Wrapper>
@@ -83,20 +48,29 @@ const Pagination = () => {
 				<img src={LeftArrowIcon} alt='Left arrow' />
 			</Button>
 			<div>
-				{pager.pages.map((page: number, index) => {
-					return (
-						<Button
-							key={index}
-							active={page === currentPage}
-							onClick={() => onThisPage(page)}
-						>
-							{page}
-						</Button>
-					);
-				})}
+				{games.length === 25 ? (
+					pager.pages.map((page: number, index) => {
+						return (
+							<Button
+								key={index}
+								active={page === currentPage}
+								onClick={() => onThisPage(page)}
+							>
+								{page}
+							</Button>
+						);
+					})
+				) : (
+					<Button
+						active={page === currentPage}
+						onClick={() => onThisPage(page)}
+					>
+						{page}
+					</Button>
+				)}
 			</div>
 			<Button
-				disabled={currentPage === pages[pages.length - 1]}
+				disabled={currentPage === pages[pages.length - 1] || games.length < 25}
 				onClick={onNextPage}
 			>
 				<img src={RightArrowIcon} alt='Right arrow' />

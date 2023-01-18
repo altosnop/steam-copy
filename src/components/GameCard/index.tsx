@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GameCardStyled, GameImg, PlayBtn } from './styles';
-
 import PlayIcon from './../../assets/play.svg';
 import HeartIcon from './../../assets/heart.svg';
 import FilledHeartIcon from './../../assets/filled-heart.svg';
-import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { addItem, removeItem } from '../../store/likeList/likeListSlice';
-
-export type TGameCardProps = {
-	id: string;
-	img: string;
-	url: string;
-	title: string;
-	date: string;
-	price: string;
-	liked: boolean | undefined;
-};
+import { TGameCardProps } from '../../types/types';
 
 const GameCard = ({
 	id,
@@ -44,7 +34,6 @@ const GameCard = ({
 		dispatch(addItem(item));
 	};
 	const handleUnlikeItem = () => {
-		setIsLiked(false);
 		dispatch(removeItem(id));
 	};
 

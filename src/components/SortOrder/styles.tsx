@@ -17,6 +17,10 @@ export const Button = styled.button`
 	cursor: pointer;
 	text-align: center;
 
+	@media screen and (min-width: 1000px) {
+		padding: 9px 11px;
+	}
+
 	img {
 		vertical-align: middle;
 	}
@@ -37,6 +41,10 @@ export const Items = styled.div`
 
 	@media screen and (min-width: 768px) {
 		left: 0;
+	}
+
+	@media screen and (min-width: 1000px) {
+		top: 50px;
 	}
 `;
 

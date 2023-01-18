@@ -31,6 +31,10 @@ export const SelectBtn = styled.button`
 	line-height: 1.2;
 	color: white;
 	cursor: pointer;
+
+	@media screen and (min-width: 1000px) {
+		padding: 10px 30px;
+	}
 `;
 
 export const SelectItems = styled.div`
@@ -44,6 +48,10 @@ export const SelectItems = styled.div`
 	border: none;
 	border-radius: 10px;
 	z-index: 1;
+
+	@media screen and (min-width: 1000px) {
+		top: 50px;
+	}
 `;
 
 export const Item = styled.button`

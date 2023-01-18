@@ -3,11 +3,7 @@ import { Wrapper } from './styles';
 import GameCard from '../GameCard';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { loadingSelector } from '../../store/games/gamesSelectors';
-import { TGame } from '../../types/types';
-
-export type TGamesListProps = {
-	items: TGame[];
-};
+import { TGamesListProps } from '../../types/types';
 
 const GamesList = ({ items }: TGamesListProps) => {
 	const loading = useAppSelector(loadingSelector);
@@ -20,6 +16,7 @@ const GamesList = ({ items }: TGamesListProps) => {
 				items.map((game, index) => {
 					return (
 						<GameCard
+							// I set the key for element as an index, because not all recieved elements have their own ID, sometimes undefined happens. I know that it is bad practice, to set key as an index.
 							key={index}
 							id={game.appId}
 							img={game.imgUrl}

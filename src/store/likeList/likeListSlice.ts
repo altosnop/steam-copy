@@ -3,7 +3,6 @@ import { TGame, TLikeListState } from '../../types/types';
 
 const initialState: TLikeListState = {
 	items: [],
-	totalCount: 0,
 };
 
 const likeListSlice = createSlice({
@@ -17,11 +16,9 @@ const likeListSlice = createSlice({
 			};
 
 			state.items = [likedItem, ...state.items];
-			state.totalCount = state.items.length;
 		},
 		removeItem: (state, action: PayloadAction<string>) => {
 			state.items = state.items.filter(item => item.appId !== action.payload);
-			state.totalCount = state.items.length;
 		},
 	},
 });

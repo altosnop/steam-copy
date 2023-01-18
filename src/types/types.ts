@@ -21,7 +21,6 @@ export type TGamesState = {
 
 export type TLikeListState = {
 	items: TGame[];
-	totalCount: number;
 };
 
 export type TButtonProps = {
@@ -32,4 +31,18 @@ export type TButtonProps = {
 export type TUrlParams = {
 	query: string;
 	page: number;
+};
+
+export type TGameCardProps = {
+	id: string;
+	img: string;
+	url: string;
+	title: string;
+	date: string;
+	price: string;
+	liked: boolean | undefined;
+};
+
+export type TGamesListProps = {
+	items: TGame[];
 };
