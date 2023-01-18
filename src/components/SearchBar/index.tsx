@@ -19,8 +19,12 @@ const SearchBar = () => {
 		debaunceFn();
 	};
 
+	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+	};
+
 	return (
-		<SearchForm>
+		<SearchForm onSubmit={onSubmit}>
 			<input
 				type='text'
 				name='game'
