@@ -12,6 +12,7 @@ export type TGame = {
 export type TGamesState = {
 	items: TGame[];
 	query: string;
+	page: number;
 	select: string;
 	order: string;
 	loading: boolean;

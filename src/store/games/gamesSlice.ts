@@ -6,6 +6,7 @@ import { RootState } from '../configureStore';
 const initialState: TGamesState = {
 	items: [],
 	query: '',
+	page: 1,
 	select: 'Price',
 	order: '',
 	loading: false,
@@ -14,11 +15,11 @@ const initialState: TGamesState = {
 
 export const getGames = createAsyncThunk(
 	'games/getGames',
-	async (page: number, { rejectWithValue, dispatch, getState }) => {
+	async (_, { rejectWithValue, dispatch, getState }) => {
 		try {
 			const state = getState() as RootState;
 			const response = await axios.get<TGame[]>(
-				`https://steam2.p.rapidapi.com/search/${state.games.query}/page/${page}`,
+				`https://steam2.p.rapidapi.com/search/${state.games.query}/page/${state.games.page}`,
 				{
 					headers: {
 						'X-RapidAPI-Key':
@@ -43,6 +44,9 @@ const gamesSlice = createSlice({
 	reducers: {
 		setQuery: (state, action: PayloadAction<string>) => {
 			state.query = action.payload;
+		},
+		setPage: (state, action: PayloadAction<number>) => {
+			state.page = action.payload;
 		},
 		setSelect: (state, action: PayloadAction<string>) => {
 			state.select = action.payload;
@@ -75,6 +79,7 @@ const gamesSlice = createSlice({
 	},
 });
 
-export const { setQuery, setSelect, setOrder, reset } = gamesSlice.actions;
+export const { setQuery, setPage, setSelect, setOrder, reset } =
+	gamesSlice.actions;
 
 export default gamesSlice.reducer;

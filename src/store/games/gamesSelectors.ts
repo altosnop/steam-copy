@@ -4,6 +4,7 @@ import { likedItemsSelector } from '../likeList/likeListSelectors';
 
 export const gamesSelector = (state: RootState) => state.games.items;
 export const querySelector = (state: RootState) => state.games.query;
+export const pageSelector = (state: RootState) => state.games.page;
 export const loadingSelector = (state: RootState) => state.games.loading;
 export const selectSelector = (state: RootState) => state.games.select;
 export const orderSelector = (state: RootState) => state.games.order;
