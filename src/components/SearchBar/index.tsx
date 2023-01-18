@@ -16,7 +16,7 @@ const SearchBar = () => {
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const params = {
-			query,
+			query: e.currentTarget.value,
 			page: 1,
 		};
 

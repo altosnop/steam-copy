@@ -11,8 +11,11 @@ import SteamIcon from './../../assets/steam.svg';
 import SearchBar from '../../components/SearchBar';
 import SortBar from '../../components/SortBar';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { totalCountSelector } from '../../store/likeList/likeListSelectors';
 
 const Header = () => {
+	const totalCount = useAppSelector(totalCountSelector);
 	return (
 		<HeaderStyled>
 			<Wrapper>

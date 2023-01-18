@@ -1,5 +1,6 @@
 import { TGame } from '../../types/types';
 import { RootState } from '../configureStore';
+import { likedItemsSelector } from '../likeList/likeListSelectors';
 
 export const gamesSelector = (state: RootState) => state.games.items;
 export const loadingSelector = (state: RootState) => state.games.loading;
@@ -56,4 +57,27 @@ export const sortedGamesSelector = (state: RootState) => {
 	} else {
 		return sortByDate(state);
 	}
+};
+
+// * Checking, is game liked or not *
+export const isLikedGamesSelector = (state: RootState) => {
+	const games = gamesSelector(state);
+	const likedGames = likedItemsSelector(state);
+
+	const resultArr: TGame[] = [...games];
+
+	for (let i = 0; i < resultArr.length; i += 1) {
+		for (let j = 0; j < likedGames.length; j += 1) {
+			if (resultArr[i].appId === likedGames[j].appId) {
+				const item = {
+					...resultArr[i],
+					liked: true,
+				};
+
+				resultArr[i] = item;
+			}
+		}
+	}
+
+	return resultArr;
 };

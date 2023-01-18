@@ -2,21 +2,22 @@ import React from 'react';
 import { Wrapper } from './styles';
 import GameCard from '../GameCard';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import {
-	loadingSelector,
-	sortedGamesSelector,
-} from '../../store/games/gamesSelectors';
+import { loadingSelector } from '../../store/games/gamesSelectors';
+import { TGame } from '../../types/types';
 
-const GamesList = () => {
+export type TGamesListProps = {
+	items: TGame[];
+};
+
+const GamesList = ({ items }: TGamesListProps) => {
 	const loading = useAppSelector(loadingSelector);
-	const sortedGames = useAppSelector(sortedGamesSelector);
 
 	return (
 		<Wrapper>
 			{loading ? (
 				<p style={{ color: 'white' }}>Loading...</p>
 			) : (
-				sortedGames.map((game, index) => {
+				items.map((game, index) => {
 					return (
 						<GameCard
 							key={index}
@@ -25,6 +26,7 @@ const GamesList = () => {
 							title={game.title}
 							date={game.released}
 							price={game.price}
+							liked={game.liked}
 						/>
 					);
 				})

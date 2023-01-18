@@ -3,9 +3,9 @@ export type TGame = {
 	title: string;
 	imgUrl: string;
 	released: string;
-	description: string;
+	description?: string;
 	price: string;
-	liked: boolean;
+	liked?: boolean | undefined;
 };
 
 export type TState = {
@@ -17,6 +17,12 @@ export type TState = {
 	select: string;
 	order: string;
 	loading: boolean;
+	error: string;
+};
+
+export type TLikeListState = {
+	items: TGame[];
+	totalCount: number;
 };
 
 export type TButtonProps = {
