@@ -5,15 +5,21 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/configureStore';
 import GlobalStyles from './global';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+
+let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
 root.render(
 	<Provider store={store}>
-		<BrowserRouter>
-			<GlobalStyles />
-			<App />
-		</BrowserRouter>
+		<PersistGate loading={null} persistor={persistor}>
+			<BrowserRouter>
+				<GlobalStyles />
+				<App />
+			</BrowserRouter>
+		</PersistGate>
 	</Provider>
 );

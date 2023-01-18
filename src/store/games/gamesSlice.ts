@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { TGame, TState, TUrlParams } from '../../types/types';
+import { TGame, TGamesState, TUrlParams } from '../../types/types';
 
-const initialState: TState = {
+const initialState: TGamesState = {
 	items: [],
 	params: {
 		query: '',

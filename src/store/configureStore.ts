@@ -1,13 +1,39 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import gamesSlice from './games/gamesSlice';
 import likeListSlice from './likeList/likeListSlice';
+import storage from 'redux-persist/lib/storage';
+import {
+	persistReducer,
+	FLUSH,
+	REHYDRATE,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER,
+} from 'redux-persist';
+
+const reducers = combineReducers({
+	games: gamesSlice,
+	likeList: likeListSlice,
+});
+
+const persistConfig = {
+	key: 'root',
+	storage,
+	whitelist: ['likeList'],
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-	reducer: {
-		games: gamesSlice,
-		likeList: likeListSlice,
-	},
+	reducer: persistedReducer,
 	devTools: process.env.NODE_ENV === 'development',
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		}),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

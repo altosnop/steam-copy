@@ -32,19 +32,6 @@ export const GameCardStyled = styled.div`
 			font-size: 14px;
 			line-height: 1.2;
 		}
-
-		button {
-			position: absolute;
-			top: 80px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 47px;
-			height: 43px;
-			border-radius: 50%;
-			background-color: #837f7f;
-			filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-		}
 	}
 
 	button {
@@ -55,6 +42,20 @@ export const GameCardStyled = styled.div`
 		background-color: transparent;
 		cursor: pointer;
 	}
+`;
+
+export const PlayBtn = styled.a`
+	position: absolute;
+	top: 80px;
+	right: 17px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 47px;
+	height: 43px;
+	border-radius: 50%;
+	background-color: #837f7f;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 export const GameImg = styled.img`

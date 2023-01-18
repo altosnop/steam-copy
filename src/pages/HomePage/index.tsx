@@ -5,14 +5,10 @@ import GamesList from '../../components/GamesList';
 import Pagination from '../../components/Pagination';
 import Header from '../../components/Header';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import {
-	isLikedGamesSelector,
-	sortedGamesSelector,
-} from '../../store/games/gamesSelectors';
+import { sortedGamesSelector } from '../../store/games/gamesSelectors';
 
 const HomePage = () => {
 	const sortedGames = useAppSelector(sortedGamesSelector);
-	const isLikedGames = useAppSelector(isLikedGamesSelector);
 
 	return (
 		<Container>

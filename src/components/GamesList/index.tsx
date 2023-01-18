@@ -23,6 +23,7 @@ const GamesList = ({ items }: TGamesListProps) => {
 							key={index}
 							id={game.appId}
 							img={game.imgUrl}
+							url={game.url}
 							title={game.title}
 							date={game.released}
 							price={game.price}

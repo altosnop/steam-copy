@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GameCardStyled, GameImg } from './styles';
+import { GameCardStyled, GameImg, PlayBtn } from './styles';
 
 import PlayIcon from './../../assets/play.svg';
 import HeartIcon from './../../assets/heart.svg';
@@ -11,13 +11,22 @@ import { addItem, removeItem } from '../../store/likeList/likeListSlice';
 export type TGameCardProps = {
 	id: string;
 	img: string;
+	url: string;
 	title: string;
 	date: string;
 	price: string;
 	liked: boolean | undefined;
 };
 
-const GameCard = ({ id, img, title, date, price, liked }: TGameCardProps) => {
+const GameCard = ({
+	id,
+	img,
+	url,
+	title,
+	date,
+	price,
+	liked,
+}: TGameCardProps) => {
 	const [isLiked, setIsLiked] = useState<boolean | undefined>(liked);
 	const dispatch = useAppDispatch();
 
@@ -26,6 +35,7 @@ const GameCard = ({ id, img, title, date, price, liked }: TGameCardProps) => {
 			appId: id,
 			title,
 			imgUrl: img,
+			url,
 			released: date,
 			price,
 		};
@@ -53,9 +63,9 @@ const GameCard = ({ id, img, title, date, price, liked }: TGameCardProps) => {
 				<p>{date}</p>
 				<span>{price}</span>
 				{isLiked ? (
-					<button>
+					<PlayBtn href={url} target='_blank'>
 						<img src={PlayIcon} alt='Play' />
-					</button>
+					</PlayBtn>
 				) : (
 					''
 				)}
