@@ -34,6 +34,7 @@ const GameCard = ({
 		dispatch(addItem(item));
 	};
 	const handleUnlikeItem = () => {
+		setIsLiked(false);
 		dispatch(removeItem(id));
 	};
 
