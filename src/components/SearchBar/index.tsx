@@ -1,27 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { SearchForm } from './styles';
 import SearchIcon from './../../assets/search.svg';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { getGames } from '../../store/games/gamesSlice';
+import { getGames, setQuery } from '../../store/games/gamesSlice';
 import { debounce } from 'lodash';
-import { TUrlParams } from '../../types/types';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { querySelector } from '../../store/games/gamesSelectors';
 
 const SearchBar = () => {
 	const dispatch = useAppDispatch();
-	const [query, setQuery] = useState('');
+	const query = useAppSelector(querySelector);
 
 	const debaunceFn = useRef(
-		debounce((params: TUrlParams) => dispatch(getGames(params)), 1000)
+		debounce((page: number) => dispatch(getGames(page)), 1000)
 	).current;
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const params = {
-			query: e.currentTarget.value,
-			page: 1,
-		};
-
-		setQuery(e.currentTarget.value);
-		debaunceFn(params);
+		dispatch(setQuery(e.currentTarget.value));
+		debaunceFn(1);
 	};
 
 	return (

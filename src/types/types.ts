@@ -11,10 +11,7 @@ export type TGame = {
 
 export type TGamesState = {
 	items: TGame[];
-	params: {
-		query: string;
-		page: number;
-	};
+	query: string;
 	select: string;
 	order: string;
 	loading: boolean;
@@ -28,6 +25,7 @@ export type TLikeListState = {
 
 export type TButtonProps = {
 	active?: boolean;
+	disabled?: boolean;
 };
 
 export type TUrlParams = {

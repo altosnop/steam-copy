@@ -1,13 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { TGame, TGamesState, TUrlParams } from '../../types/types';
+import { TGame, TGamesState } from '../../types/types';
+import { RootState } from '../configureStore';
 
 const initialState: TGamesState = {
 	items: [],
-	params: {
-		query: '',
-		page: 1,
-	},
+	query: '',
 	select: 'Price',
 	order: '',
 	loading: false,
@@ -16,10 +14,11 @@ const initialState: TGamesState = {
 
 export const getGames = createAsyncThunk(
 	'games/getGames',
-	async ({ query, page }: TUrlParams, { rejectWithValue, dispatch }) => {
+	async (page: number, { rejectWithValue, dispatch, getState }) => {
 		try {
+			const state = getState() as RootState;
 			const response = await axios.get<TGame[]>(
-				`https://steam2.p.rapidapi.com/search/${query}/page/${page}`,
+				`https://steam2.p.rapidapi.com/search/${state.games.query}/page/${page}`,
 				{
 					headers: {
 						'X-RapidAPI-Key':
@@ -42,6 +41,9 @@ const gamesSlice = createSlice({
 	name: 'games',
 	initialState,
 	reducers: {
+		setQuery: (state, action: PayloadAction<string>) => {
+			state.query = action.payload;
+		},
 		setSelect: (state, action: PayloadAction<string>) => {
 			state.select = action.payload;
 		},
@@ -73,6 +75,6 @@ const gamesSlice = createSlice({
 	},
 });
 
-export const { setSelect, setOrder, reset } = gamesSlice.actions;
+export const { setQuery, setSelect, setOrder, reset } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

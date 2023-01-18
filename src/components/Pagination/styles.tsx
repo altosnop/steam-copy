@@ -15,6 +15,7 @@ export const Button = styled.button<TButtonProps>`
 	border: none;
 	border-radius: 50%;
 	background: ${props => (props.active ? '#17323A' : '#5b5e63')};
+	background: ${props => (props.disabled ? 'gray' : '')};
 	color: white;
-	cursor: pointer;
+	cursor: ${props => (props.disabled ? '' : 'pointer')};
 `;
